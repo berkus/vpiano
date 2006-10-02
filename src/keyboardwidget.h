@@ -11,6 +11,7 @@ class KeyboardWidget : public QWidget
 
 	protected:
 		virtual void paintEvent(QPaintEvent *);
+		void paintOctave(QPainter *painter);
 
 	public slots:
 		void octaveSelected(int);
@@ -19,4 +20,5 @@ class KeyboardWidget : public QWidget
 	private:
 		QPixmap *whiteKey;
 		QPixmap *blackKey;
+		int octaves;
 };
