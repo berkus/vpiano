@@ -1,6 +1,5 @@
 #include <QWidget>
-
-class QPixmap;
+#include <QPixmap>
 
 class KeyboardWidget : public QWidget
 {
@@ -13,12 +12,15 @@ class KeyboardWidget : public QWidget
 		virtual void paintEvent(QPaintEvent *);
 		void paintOctave(QPainter *painter);
 
+	signals:
+		void highlightOctaves(int start, int count);
+
 	public slots:
 		void octaveSelected(int);
 		void midiChannelSelected(int);
 
 	private:
-		QPixmap *whiteKey;
-		QPixmap *blackKey;
+		QPixmap whiteKey;
+		QPixmap blackKey;
 		int octaves;
 };

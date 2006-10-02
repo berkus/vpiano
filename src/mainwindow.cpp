@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "keyboardwidget.h"
+#include "octaverangewidget.h"
 #include <QLayout>
 #include <QLabel>
 #include <QSlider>
@@ -14,17 +15,14 @@ VPiano::VPiano() : QMainWindow()
 	QVBoxLayout *vb = new QVBoxLayout;
 	QHBoxLayout *octaves = new QHBoxLayout;
 
-	QLabel *oct = new QLabel(tr("Octave"), central);
-	octaves->addWidget(oct);
-
-    QSignalMapper *octaveSignalMapper = new QSignalMapper(this);
+	QSignalMapper *octaveSignalMapper = new QSignalMapper(this);
 
 	for(int i = 0; i < 9; i++)
 	{
 		QString title;
 		title.setNum(i);
 		QPushButton *o = new QPushButton(title, central);
-		o->setFixedSize(fontMetrics().width(title)*6, o->height());
+		o->setFixedSize(fontMetrics().width(title)*4, o->height());
 		QString shortcut;
 		shortcut.setNum(i+1);
 		o->setShortcut(QKeySequence(QString("F") + shortcut));
@@ -33,6 +31,9 @@ VPiano::VPiano() : QMainWindow()
 		connect(o, SIGNAL(clicked()), octaveSignalMapper, SLOT(map()));
 		octaveSignalMapper->setMapping(o, i);
 	}
+
+	OctaveRangeWidget *octRange = new OctaveRangeWidget(central);
+	octaves->addWidget(octRange);
 
 	QSlider *velocity = new QSlider(Qt::Horizontal, central);
 	velocity->setMinimum(1);
@@ -81,6 +82,9 @@ VPiano::VPiano() : QMainWindow()
 	// TODO: connect pitchWheel
 	connect(octaveSignalMapper, SIGNAL(mapped(int)), kw, SLOT(octaveSelected(int)));
 	connect(channel, SIGNAL(valueChanged(int)), kw, SLOT(midiChannelSelected(int)));
+	connect(kw, SIGNAL(highlightOctaves(int,int)), octRange, SLOT(highlightOctaves(int,int)));
+
+	kw->octaveSelected(0); // TODO: use value read from config
 }
 
 VPiano::~VPiano()

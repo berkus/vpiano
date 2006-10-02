@@ -7,6 +7,6 @@ CONFIG += release \
           thread \
           exceptions
 
-SOURCES = main.cpp mainwindow.cpp keyboardwidget.cpp
-HEADERS = mainwindow.h keyboardwidget.h
+SOURCES = main.cpp mainwindow.cpp keyboardwidget.cpp octaverangewidget.cpp
+HEADERS = mainwindow.h keyboardwidget.h octaverangewidget.h
 RESOURCES = vpiano.qrc

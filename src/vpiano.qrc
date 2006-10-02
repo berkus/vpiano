@@ -2,5 +2,6 @@
 <qresource>
 	<file alias="white-key.png">../images/white-key.png</file>
 	<file alias="black-key.png">../images/black-key.png</file>
+	<file alias="octave.png">../images/octave.png</file>
 </qresource>
 </RCC>
