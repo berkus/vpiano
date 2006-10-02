@@ -1,0 +1,6 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+	<file alias="white-key.png">../images/white-key.png</file>
+	<file alias="black-key.png">../images/black-key.png</file>
+</qresource>
+</RCC>
